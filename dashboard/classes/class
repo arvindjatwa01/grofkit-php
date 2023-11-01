@@ -1,0 +1,91 @@
+<?php
+
+class class_company
+{
+	function companyProcessRequest($aryCompanyData, $strMode)
+	{
+		global $dbh;
+
+		if ($_SESSION['REQUEST_METHOD'] = 'POST') {
+			if ('' == $aryCompanyData) {
+				$aryCompanyData = $_POST;
+			}
+			if ('' == $strMode) {
+				$strMode = $_REQUEST['mode'];
+			}
+			$aryErrors = array();
+			if (0 < count($aryCompanyData)) {
+				if (isset($aryCompanyData['name']) && '' == $aryCompanyData['name']) {
+					$aryErrors['name'] = ' Please Enter Name .';
+				}
+				if (isset($aryCompanyData['hr_name']) && '' == $aryCompanyData['hr_name']) {
+					$aryErrors['hr_name'] = ' Please Enter Hr Name .';
+				}
+				$aryvranchId = '';
+				if (isset($aryCompanyData['branch_location']) && $aryCompanyData['branch_location']) {
+					$aryvranchId = implode(',', $aryCompanyData['branch_location']);
+				}
+
+				if (0 == count($aryErrors)) {
+					$strRes = FALSE;
+					switch ($strMode) {
+						case 'new':
+							$sqlInsertSliderData = ' INSERT INTO company SET
+						branch_location=\'' . mysql_real_escape_string_port($aryvranchId) . '\',
+						name=\'' . mysql_real_escape_string_port($aryCompanyData['name']) . '\',
+                        hr_name=\'' . mysql_real_escape_string_port($aryCompanyData['hr_name']) . '\',
+                        short_desc=\'' . mysql_real_escape_string_port($aryCompanyData['short_desc']) . '\',	
+						description=\'' . mysql_real_escape_string_port($aryCompanyData['description']) . '\',
+						status=1';
+							$strRes = $dbh->query($sqlInsertSliderData);	//print_r($sqlInsertSliderData); die();
+							$intInsertId = $dbh->lastInsertId();
+							break;
+
+						case 'edit':
+							$sqlUpdateSliderData = ' UPDATE company SET
+						branch_location=\'' . mysql_real_escape_string_port($aryvranchId) . '\',
+						  hr_name=\'' . mysql_real_escape_string_port($aryCompanyData['hr_name']) . '\',
+                      name=\'' . mysql_real_escape_string_port($aryCompanyData['name']) . '\',
+                        short_desc=\'' . mysql_real_escape_string_port($aryCompanyData['short_desc']) . '\',	
+						description=\'' . mysql_real_escape_string_port($aryCompanyData['description']) . '\'
+						   WHERE id=' . (int)$_GET['id'];
+
+							$strRes = $dbh->query($sqlUpdateSliderData);
+							$intInsertId = (int)$_GET['id'];
+							break;
+					}
+					if ($strRes) {
+						if (isset($_FILES['image']['name']) && $_FILES['image']['name'] != '') {
+
+							$strPostImageName = time() . '-' . $_FILES['image']['name'];
+							$strPostImagePath = SITE_UPLOAD_PATH . SITE_COMPANY_PATH;
+							//uploadDocument($_FILES['blog_image']['tmp_name'],$strPostImagePath,$strPostImageName);
+							$strSourcePath = $_FILES['image']['tmp_name'];
+							move_uploaded_file($strSourcePath, $strPostImagePath . $strPostImageName);
+							$sqlSliderImageData = 'UPDATE company SET image = \'' . $strPostImageName . '\' WHERE id=' . $intInsertId;
+							$sqlSliderImageData = 'UPDATE company SET image = \'' . $strPostImageName . '\' WHERE id=' . $intInsertId;
+							$sqlSliderImageData = 'UPDATE company SET image = \'' . $strPostImageName . '\' WHERE id=' . $intInsertId;
+							$sqlSliderImageData = 'UPDATE company SET image = \'' . $strPostImageName . '\' WHERE id=' . $intInsertId;
+							$sqlSliderImageData = 'UPDATE company SET image = \'' . $strPostImageName . '\' WHERE id=' . $intInsertId;
+							$sqlSliderImageData = 'UPDATE company SET image = \'' . $strPostImageName . '\' WHERE id=' . $intInsertId;
+
+
+							$dbh->query($sqlSliderImageData); // print_r($sqlSliderImageData); die();
+
+
+						}
+						if ($strMode == 'edit') {
+							$_SESSION['success_company_msg'] = ' Slider Updated successfully.';
+						} else {
+							$_SESSION['success_company_msg'] = 'Entry saved successfully.';
+						}
+						redirect('manage_company.php');
+					}
+				}
+			}
+			return $aryErrors;
+		}
+	}
+}
+
+$class_company = new class_company;

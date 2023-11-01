@@ -1,0 +1,141 @@
+.login_signup_body{
+    height: 100vh;
+}
+
+.log-intabs{
+    border-color: rgba(255, 255, 255, 0.271);
+}
+
+.log-intabs a{
+    flex-grow: 1;
+    text-decoration:none;
+    text-align: center;
+    color: white;
+    border-radius: 0 !important;
+    border: none !important;
+    padding: 0.9vw;
+
+}
+
+
+
+.log-intabs a.active{
+    background: rgb(77, 77, 77) !important ;
+
+    border: none;
+    color: var(--primary-color) !important;
+
+}
+
+.log-intabs a:hover{
+    color: var(--primary-color) !important;
+    border-color: transparent !important;
+
+}
+
+.login-signup-card
+{
+    border: 1px solid rgba(225, 225, 225, 0.429);
+    border-radius: 0.25vw;
+    margin:2vw auto;
+
+    font-size: 1vw;
+    /* overflow: hidden; */
+}
+
+.login-signup-field input::placeholder{
+    color: rgba(203, 203, 203, 0.736);
+
+}
+
+.login-signup-field input{
+    width: 100%;
+    background: transparent;
+   
+    color: rgb(203, 203, 203);
+    font-size: 0.9vw !important;
+    border: none;
+    padding: 0vw 0.7vw ;
+    font-weight: 400 !important;
+
+}
+
+.login-signup-field{
+    display: flex;
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.297);
+    border-radius: 4vw;
+    padding:0.5vw 1vw !important;
+
+     margin: 0.7vw 0vw !important;
+
+}
+
+.login-signup-field i{
+    font-size: 1.2vw !important;
+    color: rgba(255, 255, 255, 0.324);
+}
+
+.login-signup-field input:focus{
+    outline: none;
+}
+
+.loginsignuptab-content{
+    padding: 2vw 0vw !important;
+    min-height: 56vh !important;
+    display: flex;
+    align-items: center;
+}
+
+.sgn_up{
+    margin-bottom: 0 !important;
+}
+
+
+.login-signupbtn{
+    background-color: var(--primary-color);
+    color: white;
+    width: 40%;
+    text-decoration: none;
+    text-align: center;
+    padding: 0.5vw 0.8vw;
+    font-weight: 600;
+    flex-grow: 0;
+    margin: 1.4vw auto;
+    border-radius: 0.2vw;
+    transition: all .4s;
+}
+
+.login-signupbtn:hover{
+    color: var(--primary-color);
+    background-color:rgb(77, 77, 77) !important  ;
+}
+
+.login-form .add-option{
+    color: white;
+    font-size: 0.8vw;
+    letter-spacing: 0.3px;
+    margin: 0.6vw auto ;
+}
+
+.login-form .add-option a{
+    color: var(--primary-color);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.forgot
+{
+    text-decoration: none;
+    color:rgba(255, 255, 255, 0.85);
+    font-size: 0.8vw;
+}
+
+.forgot:hover{
+    color: white;
+}
+
+.top-40{
+    top: 40% !important;
+}
+
